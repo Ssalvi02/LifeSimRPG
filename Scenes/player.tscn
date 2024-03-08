@@ -1,0 +1,164 @@
+[gd_scene load_steps=13 format=3 uid="uid://bastycvwykoe8"]
+
+[ext_resource type="Script" path="res://Scripts/playerController.gd" id="1_mk4ao"]
+[ext_resource type="Texture2D" uid="uid://raoyvx47h374" path="res://Sprites/PlayerSprites.png" id="2_td6ik"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7kedc"]
+radius = 9.0
+height = 26.0
+
+[sub_resource type="Animation" id="Animation_g6bq6"]
+resource_name = "WalkDown"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_kllv3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_42f1a"]
+resource_name = "WalkUp"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_ugdwn"]
+resource_name = "WalkR"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_jrsi1"]
+resource_name = "WalkL"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_vxqip"]
+resource_name = "IdleUp"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [14]
+}
+
+[sub_resource type="Animation" id="Animation_t3lnl"]
+resource_name = "IdleDown"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+
+[sub_resource type="Animation" id="Animation_dsawb"]
+resource_name = "IdleR"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [13]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2fxub"]
+_data = {
+"IdleDown": SubResource("Animation_t3lnl"),
+"IdleR": SubResource("Animation_dsawb"),
+"IdleUp": SubResource("Animation_vxqip"),
+"RESET": SubResource("Animation_kllv3"),
+"WalkDown": SubResource("Animation_g6bq6"),
+"WalkL": SubResource("Animation_jrsi1"),
+"WalkR": SubResource("Animation_ugdwn"),
+"WalkUp": SubResource("Animation_42f1a")
+}
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_mk4ao")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_7kedc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("2_td6ik")
+hframes = 15
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2fxub")
+}
