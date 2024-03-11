@@ -16,7 +16,7 @@ func InputHandler():
 	var horiz_dir = Input.get_axis("walk_left", "walk_right")
 	var vert_dir = Input.get_axis("walk_up", "walk_down")
 	
-	AnimationHandler(horiz_dir, vert_dir)
+	AnimationHandler()
 	
 	if horiz_dir:
 		velocity.x = horiz_dir * SPEED
@@ -27,7 +27,7 @@ func InputHandler():
 	else:
 		velocity.y = move_toward(velocity.y, 0, SPEED)
 
-func AnimationHandler(horiz, vert):
+func AnimationHandler():
 	sprite.flip_h = false
 	if(velocity.x > 0):
 		anim.current_animation = "WalkR"
